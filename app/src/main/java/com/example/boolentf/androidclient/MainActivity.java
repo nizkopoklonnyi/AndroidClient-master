@@ -51,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 new HttpLoginRequestTask().execute(dataTest);
                 break;
             case R.id.graph_test_button:
-                intent = new Intent(context, GamePlayActivity.class);
+                intent = new Intent(context, GamePlayActivity.class);//
                 startActivity(intent);
                 break;
         }
 
     }
+
 
 //запрос на Авторизацию
     class HttpLoginRequestTask extends AsyncTask<UserForTransaction, Void, Void> {

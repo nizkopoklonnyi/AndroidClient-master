@@ -22,25 +22,23 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText passwordIn;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_registration);
         loginIn=(EditText) findViewById(R.id.login_reg);
         passwordIn=(EditText) findViewById(R.id.password_reg);
         text=(TextView) findViewById(R.id.status_reg);
-        userForTransaction =new UserForTransaction();
-
+        userForTransaction = new UserForTransaction();
     }
 
     public void onClickRegisration(View view){
         userForTransaction.setLogin(loginIn.getText().toString());
         userForTransaction.setPassword(passwordIn.getText().toString());
-        switch(view.getId()){
-            case   R.id.registration_button_registration:
-                new HttpRegistrationRequestTask().execute(userForTransaction);
-                break;
-        }
+        new HttpRegistrationRequestTask().execute(userForTransaction);
 
     }
 

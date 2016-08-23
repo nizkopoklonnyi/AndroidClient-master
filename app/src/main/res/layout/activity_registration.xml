@@ -3,45 +3,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.boolentf.androidclient.RegistrationActivity">
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password_reg"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="asd" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/login_reg"
-        android:layout_above="@+id/password_reg"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="регистрация"
-        android:onClick="onClickRegisration"
-        android:id="@+id/registration_button_registration"
-        android:layout_below="@+id/password_reg"
-        android:layout_centerHorizontal="true" />
+    tools:context="com.example.boolentf.androidclient.RegistrationActivity"
+    android:background="@drawable/avtorization_screen1"
+    >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="@string/regestration"
         android:id="@+id/status_reg"
         android:layout_above="@+id/login_reg"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/input_area"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
+        android:ems="10"
+        android:id="@+id/login_reg"
+        android:layout_above="@+id/password_reg"
+        android:layout_centerHorizontal="true"
+        android:background="@color/input_area"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:id="@+id/password_reg"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/password"
+        android:background="@color/input_area"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:id="@+id/password_check"
+        android:layout_below="@id/password_reg"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/passsword_check"
+        android:background="@color/input_area"/>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/regestration"
+        android:onClick="onClickRegisration"
+        android:id="@+id/registration_button_registration"
+        android:layout_below="@+id/password_check"
         android:layout_centerHorizontal="true" />
+
+
 
 </RelativeLayout>

@@ -6,5 +6,6 @@
     <color name="player_green">#33FF66</color>
     <color name="player_orange">#FF9933</color>
     <color name="player_purple">#6633CC</color>
+    <color name="input_area">#FFFDFDFD</color>
 </resources>
 

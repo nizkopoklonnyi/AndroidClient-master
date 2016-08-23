@@ -7,7 +7,37 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.boolentf.androidclient.JoinGameActivity">
+    tools:context="com.example.boolentf.androidclient.JoinGameActivity"
+    android:background="@drawable/avtorization_screen1"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/enter_the_game"
+        android:id="@+id/status_text_join_game"
+        android:layout_above="@+id/name_join_game"
+        android:layout_alignLeft="@+id/name_join_game"
+        android:layout_alignStart="@+id/name_join_game"
+        android:textColor="@color/input_area"
+        />
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Trol"
+        android:hint="@string/name"
+        android:background="@color/input_area"
+        android:ems="10"
+        android:id="@+id/name_join_game"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/password_join_game"
+        android:layout_alignLeft="@+id/password_join_game"
+        android:layout_alignStart="@+id/password_join_game" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -17,28 +47,11 @@
         android:id="@+id/password_join_game"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text="lol" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Trol"
-        android:ems="10"
-        android:id="@+id/name_join_game"
-        android:layout_above="@+id/password_join_game"
-        android:layout_alignLeft="@+id/password_join_game"
-        android:layout_alignStart="@+id/password_join_game" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Войти в игру"
-        android:id="@+id/status_text_join_game"
-        android:layout_above="@+id/name_join_game"
-        android:layout_alignLeft="@+id/name_join_game"
-        android:layout_alignStart="@+id/name_join_game" />
+        android:text="lol"
+        android:layout_marginTop="10dp"
+        android:hint="@string/password"
+        android:background="@color/input_area"
+        />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -49,15 +62,21 @@
         android:layout_alignTop="@+id/join_button_join_game"
         android:layout_toRightOf="@+id/join_button_join_game"
         android:layout_toEndOf="@+id/join_button_join_game"
-        android:checked="false" />
+        android:textColor="@color/input_area"
+        android:checked="false"
+        android:layout_marginTop="10dp"
+        />
 
     <Button
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="войти"
+        android:text="@string/enter"
         android:onClick="onClickJoinGame"
         android:id="@+id/join_button_join_game"
         android:layout_below="@+id/password_join_game"
         android:layout_alignLeft="@+id/password_join_game"
-        android:layout_alignStart="@+id/password_join_game" />
+        android:layout_alignStart="@+id/password_join_game"
+        android:layout_marginTop="10dp"
+        />
 </RelativeLayout>
