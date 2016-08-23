@@ -6,6 +6,12 @@
     tools:context="com.example.boolentf.androidclient.RegistrationActivity"
     android:background="@drawable/avtorization_screen1"
     >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/notice"
+    android:textColor="@color/input_area"
+    />
 
     <TextView
         android:layout_width="wrap_content"

@@ -20,7 +20,9 @@ public class RegistrationActivity extends AppCompatActivity {
     UserForTransaction userForTransaction;
     EditText loginIn;
     EditText passwordIn;
-
+    EditText password_check;
+    TextView notice;
+    static final String BAD_PASSWORD="Неверно введен пароль";
 
 
     @Override
@@ -31,15 +33,21 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         loginIn=(EditText) findViewById(R.id.login_reg);
         passwordIn=(EditText) findViewById(R.id.password_reg);
+        password_check=(EditText) findViewById(R.id.password_check);
         text=(TextView) findViewById(R.id.status_reg);
+        notice=(TextView) findViewById(R.id.notice);
         userForTransaction = new UserForTransaction();
     }
 
     public void onClickRegisration(View view){
-        userForTransaction.setLogin(loginIn.getText().toString());
-        userForTransaction.setPassword(passwordIn.getText().toString());
-        new HttpRegistrationRequestTask().execute(userForTransaction);
-
+        if(password_check.getText().toString().equals(passwordIn.getText().toString() ) ){
+            userForTransaction.setLogin(loginIn.getText().toString());
+            userForTransaction.setPassword(passwordIn.getText().toString());
+            new HttpRegistrationRequestTask().execute(userForTransaction);
+        }
+        else{
+                notice.setText(BAD_PASSWORD);
+        }
     }
 
     //запрос на регистарцию.Запихнуть в метод Кнопки.

@@ -2,10 +2,13 @@
     <string name="app_name">Begin</string>
     <string name="regestration">Регистрация</string>
     <string name="password">Пароль</string>
-    <string name="passsword_check">******</string>
+    <string name="login">Логин</string>
+    <string name="test">Тест</string>
+    <string name="passsword_check">Подтвердите пароль</string>
     <string name="name">Имя</string>
     <string name="enter_the_game">Войти в игру</string>
     <string name="enter">Войти</string>
     <string name="create_game">Создать игру</string>
     <string name="name_game">Имя игры</string>
+    <string name="bad_password">Неверно введен пароль</string>
 </resources>

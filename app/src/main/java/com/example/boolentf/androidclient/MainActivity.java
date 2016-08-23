@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText loginIn;
     EditText passwordIn;
     Context context = this;
-
+    HttpLoginRequestTask taskLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +38,34 @@ public class MainActivity extends AppCompatActivity {
         //game activity тест//
 
     }
+
+    //ОБРАБОТЧИКИ
+    //Логин кнопка
     public void onClickLogin(View view){
         dataTest.setLogin(loginIn.getText().toString());
         dataTest.setPassword(passwordIn.getText().toString());
-        Intent intent;
-        switch(view.getId()){
-            case R.id.registration_button_login:
-                intent= new Intent(this, RegistrationActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.login_button_login:
-                new HttpLoginRequestTask().execute(dataTest);
-                break;
-            case R.id.graph_test_button:
-                intent = new Intent(context, GamePlayActivity.class);
-                startActivity(intent);
-                break;
-        }
+
+        taskLogin= new HttpLoginRequestTask();//.execute(dataTest);
+        taskLogin.execute(dataTest);
+    }
+    //Регистрация кнопка
+    public void onClickReginstation( View view){
+
+        dataTest.setLogin(loginIn.getText().toString());
+        dataTest.setPassword(passwordIn.getText().toString());
+
+        Intent intent= new Intent(this, RegistrationActivity.class);
+        startActivity(intent);
 
     }
+    //Тест кнопка
+public void onClickTest(View view){
+    dataTest.setLogin(loginIn.getText().toString());
+    dataTest.setPassword(passwordIn.getText().toString());
 
+    Intent intent= new Intent(this, GamePlayActivity.class);
+    startActivity(intent);
+}
 
 //запрос на Авторизацию
     class HttpLoginRequestTask extends AsyncTask<UserForTransaction, Void, Void> {
