@@ -11,17 +11,7 @@
     android:background="@drawable/avtorization_screen1"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
-        android:id="@+id/text"
-        android:text="begin"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="@string/password"
-        />
+
 
     <EditText
         android:layout_width="230dp"
@@ -31,9 +21,8 @@
         android:hint="@string/name"
         android:ems="10"
         android:id="@+id/login_in"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="115dp"
         android:background="@color/input_area"
-        android:layout_below="@+id/text"
         android:layout_centerHorizontal="true" />
 
     <EditText

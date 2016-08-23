@@ -7,32 +7,43 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.boolentf.androidclient.CreateGameActivity">
+    tools:context="com.example.boolentf.androidclient.CreateGameActivity"
+    android:background="@drawable/avtorization_screen1"
+    >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/game_password_edit_create"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text=""
+        android:hint="@string/name_game"
         android:ems="10"
+        android:layout_marginTop="10dp"
         android:id="@+id/game_name_edit_create"
         android:layout_above="@+id/game_password_edit_create"
         android:layout_alignLeft="@+id/game_password_edit_create"
-        android:layout_alignStart="@+id/game_password_edit_create" />
+        android:layout_alignStart="@+id/game_password_edit_create"
+        android:background="@color/input_area"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:id="@+id/game_password_edit_create"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/input_area"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="создать игру"
+        android:text="@string/create_game"
         android:onClick="onClickGeameCreate"
         android:id="@+id/create_game_button_create_game"
         android:layout_below="@+id/game_password_edit_create"
@@ -43,10 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Создание игры"
+        android:text="@string/create_game"
         android:id="@+id/status_text_create_game"
         android:layout_above="@+id/game_name_edit_create"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/input_area"
+        />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -57,5 +70,7 @@
         android:layout_alignTop="@+id/create_game_button_create_game"
         android:layout_toRightOf="@+id/create_game_button_create_game"
         android:layout_toEndOf="@+id/create_game_button_create_game"
-        android:checked="false" />
+        android:checked="false"
+        android:textColor="@color/input_area"
+        />
 </RelativeLayout>

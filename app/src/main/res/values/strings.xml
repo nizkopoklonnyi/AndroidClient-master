@@ -6,4 +6,6 @@
     <string name="name">Имя</string>
     <string name="enter_the_game">Войти в игру</string>
     <string name="enter">Войти</string>
+    <string name="create_game">Создать игру</string>
+    <string name="name_game">Имя игры</string>
 </resources>
