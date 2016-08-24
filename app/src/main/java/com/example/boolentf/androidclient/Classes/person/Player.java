@@ -21,6 +21,8 @@ public class Player extends Essential{
     private Race mRace;
     private ClassPerson mClass;
     private Context mContext;
+    private int mWidth=50;
+    private int mHeith=50;
 
 public Player(Context context){
     super(context);
@@ -55,7 +57,7 @@ public Player(Context context){
     public void OnDraw(Canvas canvas){
 
         Drawable d = ContextCompat.getDrawable(mContext, R.drawable.player1);
-        d.setBounds(0, 0, 45, 45);
+        d.setBounds(0, 0, mWidth, mHeith);
         d.draw(canvas);
     }
 
@@ -71,4 +73,5 @@ public Player(Context context){
     public void setClassPerson(ClassPerson classp){
         this.mClass=classp;
     }
+
 }
