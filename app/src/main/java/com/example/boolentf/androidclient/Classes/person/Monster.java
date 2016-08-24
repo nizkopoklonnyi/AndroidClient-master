@@ -1,11 +1,15 @@
 package com.example.boolentf.androidclient.Classes.person;
 
+import android.content.Context;
 import android.media.Image;
 
 public class Monster extends Essential{
     private String mName;
     private Image mImage;
     private Double mMinLevel;
+    public Monster(Context context){
+        super(context);
+    }
 
     public void setName(String name){
         this.mName=name;
