@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public abstract class Essential extends View {
     /**position x (x,y)*/
-    private Double x;
+    private int x;
 
     /**position y (x,y)*/
-    private Double y;
+    private int y;
 
     /**level of essential*/
     private Double mLevel;
@@ -25,16 +25,16 @@ public abstract class Essential extends View {
         super(context);
     }
 
-    public void setPositionX(Double x){
+    public void setPositionX(int x){
         this.x=x;
     }
-    public Double getPositionX(){
+    public int getPositionX(){
         return this.x;
     }
-    public void setPositionY(Double y){
+    public void setPositionY(int y){
         this.y=y;
     }
-    public Double getPositionY(){
+    public int getPositionY(){
         return this.y;
     }
     public void setLevel(Double level){

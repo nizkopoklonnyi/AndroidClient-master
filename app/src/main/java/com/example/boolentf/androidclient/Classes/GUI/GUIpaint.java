@@ -7,31 +7,19 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ScaleGestureDetectorCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.ScaleGestureDetector;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
+
 
 import com.example.boolentf.androidclient.Classes.map.Map;
 import com.example.boolentf.androidclient.Classes.person.Player;
 import com.example.boolentf.androidclient.R;
-
-import org.springframework.core.io.Resource;
-
 import java.util.ArrayList;
 
-import static android.R.attr.left;
-import static android.R.attr.screenSize;
 
 /**
  * Created by BoolenTF on 21.08.2016.
@@ -40,6 +28,8 @@ import static android.R.attr.screenSize;
 //SurfaceView отображает компонент
  //SurfaceHolder.Callback опоаещение об изменениях
 public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
+
+    private static final int INVALID_POINTER_ID = -1;
 
     private static final int MAP_WIDTH = 2048;
     private static final int MAP_HEIGHT= 1536;
@@ -51,12 +41,21 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
     private Paint mPaint;
     private Resources res;
     private ArrayList<Player> mPlayers;
-    Player examplePlayer;
+    Player mOrangePlayerM;
+    Player mGreenPlayerW;
+    Player mVioletPlayerM;
+
     private Context mContex;
 
-    private Bitmap mMap;
+    private  Map mWorkArea;
 
-    private int x=0,y=0, mWidth=600, mHeith=500;
+    private Bitmap mMap;
+/** global*/
+    private int x=0,y=0;
+    private int mWidth=600, mHeith=500;
+
+    private float mLastTouchX;
+    private float mLastTouchY;
 
     private Drawable room1;
     private Drawable room2;
@@ -64,25 +63,24 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
     private Drawable room4;
     private Drawable room5;
     private Drawable room6;
+    private Drawable room7;
+    private Drawable room8;
+    private Drawable room9;
+    private Drawable room10;
+    private Drawable room11;
+    private Drawable room12;
 
-    private ScaleGestureDetector mScaleDetector;
-    private float mScaleFactor = 1.f;
-    private Map mVisibleMap;
+    private Drawable mLightSwordCard;
+    private Drawable mWorriorCard;
 
-    private int mCurrentX=0, mCurrentY=0;
-
-    // = new Map(0, 0, WIDTH_SCREEN, HEITH_SCREEN);
-
-    private  ScaleGestureDetector.OnScaleGestureListener mScaleGestureListener;
 
     public GUIpaint(Context context) {
         super(context);
         mContex=context;
         getScreenSize();
         res=this.getResources();
+        mWorkArea= new Map(mContex);
         getHolder().addCallback(this);
-
-      //  mScaleDetector = new ScaleGestureDetector(context,);
     }
 
     //изменен формат или размер SurfaceView
@@ -118,19 +116,12 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
 
         private boolean running = false;
         private SurfaceHolder surfaceHolder;
-        private int displayHight;
-        private int displayWidth;
+
 
         public DrawThread(SurfaceHolder surfaceHolder) {
             this.surfaceHolder = surfaceHolder;
 
             mMap =Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, R.drawable.map),MAP_WIDTH,MAP_HEIGHT,true);
-
-
-            //BitmapFactory.decodeResource(res, R.drawable.start_room);
-            //BitmapFactory.decodeResource(res, R.drawable.start_room);
-            //BitmapFactory.decodeResource(res, R.drawable.lvl_counter_green);
-
         }
 
         public void setRunning(boolean running) {
@@ -147,13 +138,6 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
                     canvas = surfaceHolder.lockCanvas(null);
 
                     synchronized (surfaceHolder){
-                        displayHight=canvas.getHeight();
-                        displayWidth=canvas.getWidth();
-
-                        canvas.drawColor(Color.WHITE);
-
-                        //выбор уровня
-                       // canvas.drawBitmap(mLvlBitmap,getPercentInt(displayWidth,2),displayHight-(mLvlBitmap.getHeight()/2),null);
 
 
                         //выбор карты
@@ -161,9 +145,12 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
 
                         setRooms(canvas);
 
-                        //проба игрока
-                        examplePlayer= new Player(mContex);
-                        examplePlayer.OnDraw(canvas);
+                        //рисуем игроков
+                        drawPlatyers(canvas);
+
+                        //выбор уровня
+                       // canvas.drawBitmap(mLvlBitmap,getPercentInt(displayWidth,2),displayHight-(mLvlBitmap.getHeight()/2),null);
+
 
                     }
                 } finally {
@@ -175,10 +162,11 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
     public void getComponents(ArrayList<Player> players ){
-
         this.mPlayers=players;
     }
+
     private void setRooms(Canvas canvas){
+
         room1= ContextCompat.getDrawable(mContex, R.drawable.start_room);
         room1.setBounds(x, y, x+mWidth, mHeith);
 
@@ -198,6 +186,25 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
         room6= ContextCompat.getDrawable(mContex, R.drawable.room6);
         room6.setBounds(x+mWidth, y+mHeith*2, mWidth*2, mHeith*3);
 
+        room7= ContextCompat.getDrawable(mContex, R.drawable.room7);
+        room7.setBounds(x+mWidth*2, y, mWidth*3, mHeith);
+
+        room8= ContextCompat.getDrawable(mContex, R.drawable.room8);
+        room8.setBounds(x+mWidth*2, y+mHeith, mWidth*3, mHeith*2);
+
+
+        room9= ContextCompat.getDrawable(mContex, R.drawable.room9);
+        room9.setBounds(x+mWidth*2, y+mHeith*2, mWidth*3, mHeith*3);
+
+        room10= ContextCompat.getDrawable(mContex, R.drawable.room10);
+        room10.setBounds(x, y+mHeith*3, mWidth, mHeith*4);
+
+        room11= ContextCompat.getDrawable(mContex, R.drawable.room11);
+        room11.setBounds(x+mWidth, y+mHeith*3, mWidth*2, mHeith*4);
+
+        room12= ContextCompat.getDrawable(mContex, R.drawable.room12);
+        room12.setBounds(x+mWidth*2, y+mHeith*3, mWidth*3, mHeith*4);
+
 
         room1.draw(canvas);
         room2.draw(canvas);
@@ -205,7 +212,32 @@ public class GUIpaint extends SurfaceView implements SurfaceHolder.Callback {
         room4.draw(canvas);
         room5.draw(canvas);
         room6.draw(canvas);
+        room7.draw(canvas);
+        room8.draw(canvas);
+        room9.draw(canvas);
+        room10.draw(canvas);
+        room11.draw(canvas);
+        room12.draw(canvas);
+
     }
+
+    private void drawPlatyers(Canvas canvas){
+        mOrangePlayerM = new Player(mContex, R.drawable.orange_m);
+        mOrangePlayerM.setPositionX(240);
+        mOrangePlayerM.setPositionY(190);
+        mOrangePlayerM.OnDraw(canvas);
+
+        mGreenPlayerW= new Player(mContex,R.drawable.green_w);
+        mGreenPlayerW.setPositionX(325);
+        mGreenPlayerW.setPositionY(190);
+        mGreenPlayerW.OnDraw(canvas);
+
+        mVioletPlayerM= new Player(mContex,R.drawable.violet_m);
+        mVioletPlayerM.setPositionX(280);
+        mVioletPlayerM.setPositionY(300);
+        mVioletPlayerM.OnDraw(canvas);
+    }
+
 
 public int getPercentInt(int integer, int percent){
     return (integer*percent)/100;
@@ -222,7 +254,5 @@ public void getScreenSize(){
      mScreenWidth =  metrics.widthPixels;
      mScreenHeight= metrics.heightPixels;
 }
-    public void viewScreen(){
 
-    }
 }

@@ -19,7 +19,12 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnTouchL
         super.onCreate(savedInstanceState);
         GUIpaint guiPaint=new GUIpaint(this);
         setContentView(guiPaint);
-        guiPaint.setOnTouchListener(this);
+        guiPaint.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return false;
+            }
+        });
 
         //userPlayer=new Player();
         //userPlayer.setColor("green", this);
